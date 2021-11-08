@@ -3,12 +3,61 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var Restaurant = require("./models/restaurant");
+
+// We can seed the collection if needed on
+//server start
+//server start
+async function recreateDB() {
+  // Delete everything
+  await Restaurant.deleteMany();
+  let instance1 = new Restaurant({
+    restaurant_type: "regular",
+    duration: 4,
+    cost: 24,
+  });
+  let instance2 = new Restaurant({
+    restaurant_type: "hotel",
+    duration: 5,
+    cost: 25,
+  });
+  let instance3 = new Restaurant({
+    restaurant_type: "motel",
+    duration: 6,
+    cost: 26,
+  });
+  instance1.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log("First object saved");
+  });
+  instance2.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log("Second object saved");
+  });
+  instance3.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log("Third object saved");
+  });
+}
+
+let reseed = true;
+if (reseed) {
+  recreateDB();
+}
+
+const connectionString = process.env.MONGO_CON;
+mongoose = require("mongoose");
+mongoose.connect(connectionString, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var restaurantRouter = require("./routes/restaurant");
 var addmodsRouter = require("./routes/addmods");
 var selectorRouter = require("./routes/selector");
+var resourceRouter = require("./routes/resource");
 
 var app = express();
 
@@ -27,6 +76,7 @@ app.use("/users", usersRouter);
 app.use("/restaurant", restaurantRouter);
 app.use("/addmods", addmodsRouter);
 app.use("/selector", selectorRouter);
+app.use("/", resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -26,5 +26,6 @@
   "bugs": {
     "url": "https://github.com/chaitanyaswaroopdev/fwb22udata/issues"
   },
-  "homepage": "https://github.com/chaitanyaswaroopdev/fwb22udata#readme"
+  "homepage": "https://github.com/chaitanyaswaroopdev/fwb22udata#readme",
+  "devDependencies": {}
 }

@@ -14,10 +14,14 @@ block content
     script let actionid = "#{actionid}" 
     div 
       div.row 
-        div(class='restaurantAttr mr-3') restaurant ID is: #{restaurantid}  
-        div(class='restaurantAttr mr-3') restaurant Type is: #{restaurant_type}
-        div(class='restaurantAttr mr-3') duration is:  #{restaurantsize} 
-        div(class='restaurantAttr mr-3') Cost is:  #{restaurantcost}
+        div(class='restaurantAttr mr-3') restaurant ID is: 
+        div #{restaurantid}  
+        div(class='restaurantAttr mr-3') restaurant Type is: 
+        div #{restaurant_type}
+        div(class='restaurantAttr mr-3') duration is:  
+        div #{restaurantduration} 
+        div(class='restaurantAttr mr-3') Cost is:  
+        div #{restaurantcost}
         
  
     button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 

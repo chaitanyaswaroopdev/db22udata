@@ -9,12 +9,16 @@ block content
   - let cost  = toShow.cost
   div 
     div.row 
-      div(class='costumeAttr mr-3') Restaurant ID is:  #{restaurantid} 
-      div(class='costumeAttr mr-3') Restaurant Type is:   #{restaurant_type} 
-      div(class='costumeAttr mr-3') Duration is:   #{duration} 
-      div(class='costumeAttr mr-3') Cost is:   #{cost}
+      div(class='restaurantAttr mr-3') Restaurant ID is:
+      div #{restaurantid} 
+      div(class='restaurantAttr mr-3') Restaurant Type is:   
+      div #{restaurant_type} 
+      div(class='restaurantAttr mr-3') Duration is:   
+      div #{duration} 
+      div(class='restaurantAttr mr-3') Cost is:   
+      div #{cost}
 
-      button(class="btn btn-secondary m-2" onclick="window.location.href='/restaurant'") Cancel 
+      //button(class="btn btn-secondary m-2" onclick="window.location.href='/restaurant'") Cancel 
 
     
     

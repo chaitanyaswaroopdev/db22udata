@@ -2,44 +2,48 @@ extends layout
  
 block content 
   h1= title 
- 
-  - let restaurantid = toShow._id 
-  - let restaurant_type = toShow.restaurant_type 
-  - let restaurantduration = toShow.duration
-  - let restaurantcost = toShow.cost 
-   
-  div.row(class='mb-2') 
-    div.mr-1 ID is 
-    div #{restaurantid} 
-  - let actionid = "/resource/restaurant/" + restaurantid 
-  form(id='restaurantForm', action= actionid, method="PUT") 
-    div.form-group 
-        label.restaurantAttr(for='restaurant_type') restaurant type 
-        input#restaurant_type(type='text', name='restaurant_type', value= restaurant_type ) 
-    div.form-group 
-        label.restaurantAttr(for='size') restaurant duration  
-        input#duration(type='text', name='size', value= restaurantduration ) 
-    div.form-group 
-        label.restaurantAttr(for='cost') restaurant cost 
-        input#cost(type='number', name='cost', value= restaurantcost ) 
-    input(type="submit") 
 
-    button(class="btn btn-secondary m-2" onclick="window.location.href='/restaurant'") Cancel 
+  if (toShow == null) 
+    h2 No instance to Update     
+  else
  
-  script. 
-    document.forms['restaurantForm'].addEventListener('submit', (event) => { 
-      event.preventDefault(); 
-      // TODO do something here to show user that form is being submitted 
-      fetch(event.target.action, { 
-        method: 'PUT', 
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
-      }).then((resp) => { 
-        return resp.json(); // or resp.text() or whatever the server sends 
-      }).then((body) => { 
-        alert("Update succeded") 
-        // TODO handle body 
-      }).catch((error) => { 
-        // TODO handle error 
-        alert("Update failed " + error ) 
+    - let restaurantid = toShow._id 
+    - let restaurant_type = toShow.restaurant_type 
+    - let restaurantduration = toShow.duration
+    - let restaurantcost = toShow.cost 
+    
+    div.row(class='mb-2') 
+      div.mr-1 ID is 
+      div #{restaurantid} 
+    - let actionid = "/resource/restaurant/" + restaurantid 
+    form(id='restaurantForm', action= actionid, method="PUT") 
+      div.form-group 
+          label.restaurantAttr(for='restaurant_type') restaurant type 
+          input#restaurant_type(type='text', name='restaurant_type', value= restaurant_type ) 
+      div.form-group 
+          label.restaurantAttr(for='size') restaurant duration  
+          input#duration(type='text', name='size', value= restaurantduration ) 
+      div.form-group 
+          label.restaurantAttr(for='cost') restaurant cost 
+          input#cost(type='number', name='cost', value= restaurantcost ) 
+      input(type="submit") 
+
+      button(class="btn btn-secondary m-2" onclick="window.location.href='/restaurant'") Cancel 
+  
+    script. 
+      document.forms['restaurantForm'].addEventListener('submit', (event) => { 
+        event.preventDefault(); 
+        // TODO do something here to show user that form is being submitted 
+        fetch(event.target.action, { 
+          method: 'PUT', 
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+        }).then((resp) => { 
+          return resp.json(); // or resp.text() or whatever the server sends 
+        }).then((body) => { 
+          alert("Update succeded") 
+          // TODO handle body 
+        }).catch((error) => { 
+          // TODO handle error 
+          alert("Update failed " + error ) 
+        }); 
       }); 
-    }); 

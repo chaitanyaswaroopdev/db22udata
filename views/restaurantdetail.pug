@@ -2,23 +2,24 @@ extends layout
  
 block content 
   h1= title 
+
+  if (toShow == null) 
+    h2 No instance to View 
+  else 
  
-  - let restaurantid = toShow._id 
-  - let restaurant_type = toShow.restaurant_type 
-  - let duration  = toShow.duration  
-  - let cost  = toShow.cost
-  div 
-    div.row 
-      div(class='restaurantAttr mr-3') Restaurant ID is:
-      div #{restaurantid} 
-      div(class='restaurantAttr mr-3') Restaurant Type is:   
-      div #{restaurant_type} 
-      div(class='restaurantAttr mr-3') Duration is:   
-      div #{duration} 
-      div(class='restaurantAttr mr-3') Cost is:   
-      div #{cost}
+    - let restaurantid = toShow._id 
+    - let restaurant_type = toShow.restaurant_type 
+    - let duration  = toShow.duration  
+    - let cost  = toShow.cost
+    div 
+      div.row 
+        div(class='restaurantAttr mr-3') Restaurant ID is:
+        div #{restaurantid} 
+        div(class='restaurantAttr mr-3') Restaurant Type is:   
+        div #{restaurant_type} 
+        div(class='restaurantAttr mr-3') Duration is:   
+        div #{duration} 
+        div(class='restaurantAttr mr-3') Cost is:   
+        div #{cost}
 
       //button(class="btn btn-secondary m-2" onclick="window.location.href='/restaurant'") Cancel 
-
-    
-    

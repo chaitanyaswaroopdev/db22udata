@@ -103,7 +103,7 @@ exports.restaurant_view_all_Page = async function (req, res) {
   try {
     therestaurant = await restaurant.find();
     res.render("restaurant", {
-      title: "restaurant Search Results",
+      title: "Restaurant Search Results",
       results: therestaurant,
     });
   } catch (err) {

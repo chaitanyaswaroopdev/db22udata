@@ -73,19 +73,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/restaurant", restaurantRouter);
-app.use("/addmods", addmodsRouter);
-app.use("/selector", selectorRouter);
-app.use("/", resourceRouter);
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  ``;
-  next(createError(404));
-});
-
 passport.use(
   new LocalStrategy(function (username, password, done) {
     Account.findOne({ username: username }, function (err, user) {
@@ -111,9 +98,6 @@ app.use(
   })
 );
 
-app.use(passport.initialize());
-app.use(passport.session());
-
 // passport config
 // Use the existing connection
 // The Account model
@@ -122,6 +106,22 @@ var Account = require("./models/account");
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use("/", indexRouter);
+app.use("/users", usersRouter);
+app.use("/restaurant", restaurantRouter);
+app.use("/addmods", addmodsRouter);
+app.use("/selector", selectorRouter);
+app.use("/", resourceRouter);
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  ``;
+  next(createError(404));
+});
 
 // error handler
 app.use(function (err, req, res, next) {
